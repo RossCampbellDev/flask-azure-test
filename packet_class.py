@@ -1,3 +1,4 @@
+# an abstraction of a pcap data packet
 class Pkt():
     def __init__(self, packet_in):
         self.num = packet_in.no
