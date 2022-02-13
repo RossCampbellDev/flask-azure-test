@@ -1,0 +1,15 @@
+pip install azure-storage-blob
+
+from azure-storage-blob import BlobServiceClient, BlobClient, ContainerClient, __version__
+print("azure blob storage v: " + __version__) # test its imported
+
+get the username, the private key, and the connection string from azure.  export conn string to env variables?
+
+create a blob service client for interacting with the blob
+create a blob container, give it a unique id number
+
+get a reference to blob client from the service client, using container name and 'local file name' as params
+    local file name is a file we're going to upload
+
+read the file as bytes and then upload using
+    blob_client.upload_blob(data)

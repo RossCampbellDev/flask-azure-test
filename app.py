@@ -10,6 +10,7 @@ def test():
     dataset = read_capture(file_name)[1]
     return render_template('pcap.html', pfname=file_name, data=dataset)
 
+
 @app.route('/pcap/', methods=['GET'])
 def get_pcap_file():
     return render_template('pcap.html')
