@@ -1,0 +1,39 @@
+html 
+{
+    background-color: #832424;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+body
+{
+    position: absolute;
+    padding: 20px;
+    width: 1000px;
+    height: auto;
+    margin-left:50%;
+    left: -500px;
+    background-color: #FFF;
+    font-size: 14pt;
+    border-radius: 10px;
+}
+
+h1
+{
+    color:#333;
+    padding-top:-10px;
+}
+
+h2
+{
+    color:#AA2233;
+    padding-top:-10px;
+}
+
+th, td
+{
+    border: 1px solid #530404;
+}
+th, td:hover
+{
+    background-color: #A35454;
+}

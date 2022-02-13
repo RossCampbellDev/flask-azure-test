@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>PCAP Data Visualisation</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script>
+        function goBack() {
+          window.history.back();
+        }
+    </script>
+  </head>
+  <body>
+        <button onclick="goBack()">Go Back</button>
+        {% if pfname is defined %}
+            <h1>{{ pfname }}</h1>
+            <table cellpadding="3">
+                <tr><th>Num.</th><th>Source</th><th>Destination</th><th>protocol</th><th>Bytes</th><th>Time (abs)</th></tr>
+                {% for p in data %}
+                    <tr>
+                        <td>{{ p.num }}</td>
+                        <td>{{ p.src }}</td>
+                        <td>{{ p.dst }}</td>
+                        <td>{{ p.proto }}</td>
+                        <td>{{ p.len }}</td>
+                        <td>{{ p.time }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %} 
+            <h2>Select PCAP file to work with</h2>
+            <form method="post" action="/pcap/">
+                <input type="text" name="pcap_file_name_input" width="120" />
+                <input type="submit" />
+            </form>
+        {% endif %}
+  </body>
+</html>
