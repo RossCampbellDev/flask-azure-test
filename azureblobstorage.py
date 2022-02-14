@@ -3,10 +3,15 @@ from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient, _
 
 print("azure blob storage v: " + __version__) # test its imported
 
-key = "CfoSroL5EhUF4UnSVSE5XbCD/0mi87Cwp+wh2F0W2dwVySf1SiWOWMAtA44Obf6s3T8zZeBiDrNcez4Azrzemw=="
-acct_name = "flaskteststorage"
-conn_string = "DefaultEndpointsProtocol=https;AccountName=flaskteststorage;AccountKey=CfoSroL5EhUF4UnSVSE5XbCD/0mi87Cwp+wh2F0W2dwVySf1SiWOWMAtA44Obf6s3T8zZeBiDrNcez4Azrzemw==;EndpointSuffix=core.windows.net"
-# conn_string = os.getenv('AZURE_STORAGE_CONNECTION_STRING')
+# server 1
+# key = "CfoSroL5EhUF4UnSVSE5XbCD/0mi87Cwp+wh2F0W2dwVySf1SiWOWMAtA44Obf6s3T8zZeBiDrNcez4Azrzemw=="
+# conn_string = "DefaultEndpointsProtocol=https;AccountName=flaskteststorage;AccountKey=CfoSroL5EhUF4UnSVSE5XbCD/0mi87Cwp+wh2F0W2dwVySf1SiWOWMAtA44Obf6s3T8zZeBiDrNcez4Azrzemw==;EndpointSuffix=core.windows.net"
+# acct_name = "flaskteststorage"
+
+# server 2
+key = "DDLGr0r+lRnIYJv1YGRpWr0sS/IFg0avQzj6jX+FlqAtT62cESoUCjn99nOkXfmELZ8cH5u6UA1gKAdPXcLFXQ=="
+acct_name = "flaskstorageaccount"
+conn_string = "DefaultEndpointsProtocol=https;AccountName=flaskstorageaccount;AccountKey=DDLGr0r+lRnIYJv1YGRpWr0sS/IFg0avQzj6jX+FlqAtT62cESoUCjn99nOkXfmELZ8cH5u6UA1gKAdPXcLFXQ==;EndpointSuffix=core.windows.net"
 
 try:
     blob_service_client = BlobServiceClient.from_connection_string(conn_string)  # create a client to interact with the blob service

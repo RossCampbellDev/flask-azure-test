@@ -33,6 +33,7 @@ app.layout = html.Div([
     dcc.Graph(id='bar_chart', figure=px.bar(data_frame=dataset, x='source'))
 ])
 
+
 # input changes based on the dropdown, output changes the graph
 @app.callback(
     Output(component_id='bar_chart', component_property='figure'),
