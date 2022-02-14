@@ -21,11 +21,13 @@ try:
     #     result = blob_client.upload_blob(data)
 
     blob_list = container_client.list_blobs()
+    blobs = []
     for blob in blob_list:
+        blobs.append(blob.name)
         print('\t' + blob.name)
 
-    download_file_path = os.path.join('/', str.replace('test.txt','.txt','DOWNLOAD.txt'))
+    download_file_path = os.path.join('./', str.replace(local_file_name, '.txt', '.DOWNLOAD.txt'))
     with open(download_file_path, "wb") as download_file:
-        download_file.write(container_client.download_blob.readall())
+        download_file.write(container_client.download_blob(blobs[0]).readall())  # need to specify which blob to download... get the name from the list of blobs in the container client
 except Exception as e:
     print(e)
