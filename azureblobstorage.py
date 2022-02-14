@@ -11,7 +11,8 @@ print("azure blob storage v: " + __version__) # test its imported
 # server 2
 key = "DDLGr0r+lRnIYJv1YGRpWr0sS/IFg0avQzj6jX+FlqAtT62cESoUCjn99nOkXfmELZ8cH5u6UA1gKAdPXcLFXQ=="
 acct_name = "flaskstorageaccount"
-conn_string = "DefaultEndpointsProtocol=https;AccountName=flaskstorageaccount;AccountKey=DDLGr0r+lRnIYJv1YGRpWr0sS/IFg0avQzj6jX+FlqAtT62cESoUCjn99nOkXfmELZ8cH5u6UA1gKAdPXcLFXQ==;EndpointSuffix=core.windows.net"
+# conn_string = "DefaultEndpointsProtocol=https;AccountName=flaskstorageaccount;AccountKey=DDLGr0r+lRnIYJv1YGRpWr0sS/IFg0avQzj6jX+FlqAtT62cESoUCjn99nOkXfmELZ8cH5u6UA1gKAdPXcLFXQ==;EndpointSuffix=core.windows.net"
+conn_string = "BlobEndpoint=https://flaskteststorage.blob.core.windows.net/;QueueEndpoint=https://flaskteststorage.queue.core.windows.net/;FileEndpoint=https://flaskteststorage.file.core.windows.net/;TableEndpoint=https://flaskteststorage.table.core.windows.net/;SharedAccessSignature=sv=2020-08-04&ss=bfqt&srt=sco&sp=rwdlacupitfx&se=2022-02-14T22:58:53Z&st=2022-02-14T14:58:53Z&spr=https,http&sig=wFIDyLUjnvMOI42O6jS3fq8juEVJ%2Bu8i5cvL1ahM4g8%3D"
 
 try:
     blob_service_client = BlobServiceClient.from_connection_string(conn_string)  # create a client to interact with the blob service
