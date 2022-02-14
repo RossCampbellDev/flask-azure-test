@@ -14,7 +14,6 @@ class AzureBlobStorageHandler():
     def create_blob_service(self):
         self.blob_service_client = BlobServiceClient.from_connection_string(self.conn_string)
 
-    # creates new if it doesn't exist
     def select_container(self, name):
         self.container_name = name
         self.container_client = self.blob_service_client.get_container_client(self.container_name)
@@ -29,7 +28,7 @@ class AzureBlobStorageHandler():
         for blob in blob_list:
             if filename == blob.name:
                 print("%s found, making a copy..." % filename)
-                download_file_path = os.path.join('./', str.replace(filename, filename[-4], 'DOWNLOAD.' + filename))
+                download_file_path = './' + 'DOWNLOAD.' + filename
                 with open(download_file_path, "wb") as download_file:
                     download_file.write(self.container_client.download_blob(blob).readall())  # need to specify which blob to download... get the name from the list of blobs in the container client
 
@@ -41,8 +40,8 @@ c = "BlobEndpoint=https://flaskteststorage.blob.core.windows.net/;QueueEndpoint=
 c_n = '729c45f7-db98-4c12-ab37-ab59ece225a3'
 
 handler = AzureBlobStorageHandler(a, k, c)
-handler.select_container('testcontainer')
 handler.create_blob_service()
-handler.write_file('test.txt')
+handler.select_container(c_n)
+# handler.write_file('test.txt')
 handler.read_file('test.txt')
 
