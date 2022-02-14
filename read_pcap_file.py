@@ -15,14 +15,11 @@ def read_capture(pcap_file):
     return all_pkts, all_pkts_json
 
 
-# testing
+# TESTING ==============================================================================================================
 all_pkts = read_capture('test.pcap')
 dataset = get_df_from_json2(all_pkts[1])
 # create_graph(dataset, 'protocol')
 # create_pie(dataset, 'protocol')
-
-# testing interactive graphing
-# dash documentation for how to create the page layout
 
 app.layout = html.Div([
     html.H1('pcap breakdown'),
@@ -30,18 +27,26 @@ app.layout = html.Div([
                  options=[{'label': x, 'value': x} for x in sorted(dataset.columns.unique())],
                  value='source'
                  ),
-    dcc.Graph(id='bar_chart', figure=px.bar(data_frame=dataset, x='source'))
+    html.Div(id='chart', className="charts"),  # render the bar charts
+    html.Div(id='chart2', className="charts")
 ])
 
 
-# input changes based on the dropdown, output changes the graph
 @app.callback(
-    Output(component_id='bar_chart', component_property='figure'),
+    Output(component_id='chart', component_property='children'),
     Input(component_id='column_select', component_property='value')
 )
-def interactive_graphing(value_column):
-    print(value_column)
-    df = dataset[dataset[value_column]]
-    return px.bar(data_frame=df, x=value_column)
+def change_graph(value_column):
+    df = dataset[value_column]
+    return dcc.Graph(id='bar_chart', figure=px.bar(data_frame=df, x=value_column))
 
-app.run_server()
+
+@app.callback(
+    Output(component_id='chart2', component_property='children'),
+    Input(component_id='chart', component_property='selected_cells')
+)
+def select_ip(ip):
+    print(ip)
+    return html.Div()
+
+app.run_server(debug=True)

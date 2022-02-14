@@ -1,0 +1,44 @@
+html 
+{
+    background-color: #832424;
+    font-family: 'helvetica';
+}
+
+body
+{
+    position: absolute;
+    padding: 20px;
+    width: 1000px;
+    height: auto;
+    margin-left:50%;
+    left: -500px;
+    background-color: #FFF;
+    font-size: 14pt;
+    border-radius: 10px;
+}
+
+h1
+{
+    color:#333;
+    padding-top:-10px;
+}
+
+.charts {
+    padding: 4px;
+    border: thin lightgrey solid;
+}
+
+h2
+{
+    color:#AA2233;
+    padding-top:-10px;
+}
+
+th, td
+{
+    border: 1px solid #530404;
+}
+th, td:hover
+{
+    background-color: #A35454;
+}
