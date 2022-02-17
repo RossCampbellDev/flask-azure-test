@@ -37,9 +37,3 @@ class AzureBlobStorageHandler():
                 download_file_path = './' + 'DOWNLOAD.' + filename
                 with open(download_file_path, "wb") as download_file:
                     download_file.write(self.container_client.download_blob(blob).readall())  # need to specify which blob to download... get the name from the list of blobs in the container client
-
-
-# a = "flaskstorageaccount"
-# k = "DDLGr0r+lRnIYJv1YGRpWr0sS/IFg0avQzj6jX+FlqAtT62cESoUCjn99nOkXfmELZ8cH5u6UA1gKAdPXcLFXQ=="
-# this conn string was generated in Azure in the storage container settings.  it can be generated with code i think?
-# c = "BlobEndpoint=https://flaskteststorage.blob.core.windows.net/;QueueEndpoint=https://flaskteststorage.queue.core.windows.net/;FileEndpoint=https://flaskteststorage.file.core.windows.net/;TableEndpoint=https://flaskteststorage.table.core.windows.net/;SharedAccessSignature=sv=2020-08-04&ss=bfqt&srt=sco&sp=rwdlacupitfx&se=2022-02-14T22:58:53Z&st=2022-02-14T14:58:53Z&spr=https,http&sig=wFIDyLUjnvMOI42O6jS3fq8juEVJ%2Bu8i5cvL1ahM4g8%3D"

@@ -1,6 +1,4 @@
 import dash
-from dash.dependencies import Input, Output
-from dash import dash_table, dcc, html
 import plotly.express as px
 import pandas as pd
 
@@ -8,6 +6,7 @@ from dash.dependencies import Output, Input
 
 app = dash.Dash(__name__)  # flask
 global dataset1
+
 
 def get_df_from_json(json_data):
     # df = pd.Series(json_data) # df is shorthand for Data Frame
