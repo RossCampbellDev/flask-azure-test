@@ -11,7 +11,7 @@ global dataset1
 def get_df_from_json(json_data):
     # df = pd.Series(json_data) # df is shorthand for Data Frame
     df = pd.DataFrame(json_data)
-    df.columns = ['num','src','dst','time','proto','len']
+    df.columns = ['number', 'source', 'destination', 'time', 'protocol', 'length']
     df.to_json(orient='table')
     return df
 

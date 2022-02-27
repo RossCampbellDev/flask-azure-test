@@ -31,7 +31,7 @@ h2
 
 th, td
 {
-    border: 1px solid #530404;
+    border: 1px solid #530404; padding: 3px;
 }
 th, td:hover
 {
