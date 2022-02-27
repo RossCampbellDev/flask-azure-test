@@ -64,6 +64,8 @@ app.layout = html.Div([
         )
     ]),
     html.Br(),
+    html.Div(id="chaintest", className="charts", children="this div demonstrates chaining of callbacks.  whatever shows here will trigger the callback on the radio buttons"),
+    html.Br(),
     dcc.Dropdown(id='column_select', options=["number", "source", "destination", "time", "protocol", "length"], value='source'),
     html.Button(id='button1', n_clicks=0, children='show chart'),  # n_clicks counts number of clicks... its a property
     html.Div(id='chart', className="charts", style={'padding-bottom': '30px;'}),  # render the bar charts,
@@ -74,6 +76,28 @@ app.layout = html.Div([
 # dcc.Graph(id='graph-output', figure={})
 # html.Div(id='chart2', className="charts"),
 
+
+@app.callback(
+    Output('chaintest', 'children'),
+    Input('datatable-interactivity', 'active_cell'),
+    prevent_initial_call=True
+)
+def tbl_cell(selected_cell):
+    x=selected_cell["row"]
+    y=selected_cell["column"]
+    print(dataset.iloc[x, y])  # data in selected cell
+
+    return dataset.columns[y]
+
+
+@app.callback(
+    Output('radio2', 'value'),
+    Input('chaintest', 'children'),
+    prevent_initial_call=True
+)
+def chaintest(col):
+    print("col %s" % col)
+    return col  # dcc.RadioItems(id='radio2', options=['source', 'destination'], value=col)
 
 
 
@@ -107,20 +131,20 @@ def ip_analysis(value):
     [Output(component_id='chart', component_property='children'),
      Output(component_id='t1', component_property='children')],
     [State(component_id='column_select', component_property='value')],
-     [Input(component_id='button1', component_property='n_clicks')],
+    [Input(component_id='button1', component_property='n_clicks')],
     prevent_initial_call=True  # stops it calling the callback on page load
 )
 def change_graph(value_column, n):
-    print(n)
     df = dataset[value_column]
+    df = dataset
+    print(dataset[value_column].value_counts())
 
-    # if 1 == 2:  # this is how we would avoid it doing anything, for whatever reasons
-    #     return dash.no_update, dash.no_update, None
+    # return dash.no_update, dash.no_update, None # this is how we would avoid it doing anything, for whatever reasons
 
-    if value_column in ["source", "destination"]:
+    if value_column in ["sour1ce", "destination"]:
         graph = dcc.Graph(id='chart_bar', figure=px.bar(data_frame=df, x=value_column, template='presentation'))  # names=value_column, values=value_column))
-    elif value_column in ["protocol", "length"]:
-        graph = dcc.Graph(id='chart_pie', figure=px.pie(data_frame=df, names=value_column, values=value_column, template='presentation'))
+    elif value_column in ["protocol", "source", "length"]:
+        graph = dcc.Graph(id='chart_pie', figure=px.pie(data_frame=df, names=dataset[value_column].unique(), values=dataset[value_column].value_counts(), template='presentation'))  # .value_counts(ascending=True)
     else:
         return dash.no_update, dash.no_update
 
